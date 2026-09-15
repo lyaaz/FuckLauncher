@@ -1,10 +1,12 @@
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         google()
         mavenCentral()
         gradlePluginPortal()
     }
 }
+
 @Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
@@ -14,8 +16,11 @@ dependencyResolutionManagement {
         maven {
             url = uri("https://api.xposed.info")
         }
-        maven {
-            url = uri("https://jitpack.io")
+        maven("https://jitpack.io")
+    }
+    versionCatalogs {
+        create("libs") {
+            from(files("build-logic/gradle/libs.versions.toml"))
         }
     }
 }
